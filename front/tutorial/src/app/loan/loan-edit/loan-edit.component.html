@@ -1,0 +1,67 @@
+<div class="container">
+    <h1>Crear préstamo</h1>
+
+    <form [formGroup]="loanForm">
+
+        <mat-form-field>
+            <mat-label>Identificador</mat-label>
+            <input type="text" matInput placeholder="Identificador" formControlName="id" disabled>
+        </mat-form-field>
+
+        <mat-form-field>
+                <mat-label>Nombre del juego</mat-label>
+                <mat-select disableRipple formControlName="game">
+                    @for (game of games; track game.id) {
+                        <mat-option [value]="game">{{ game.title }}</mat-option>
+                    }
+                </mat-select>
+                @if (loanForm.get('game')?.hasError('required')){<mat-error>El nombre del juego no puede estar vacío</mat-error>}
+                @if (loanForm.get('game')?.hasError('exists')){<mat-error>El juego no está disponible estas fechas</mat-error>}
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nombre del cliente</mat-label>
+                <mat-select disableRipple formControlName="client">
+                    @for (client of clients; track client.id) {
+                        <mat-option [value]="client">{{ client.name }}</mat-option>
+                    }
+                </mat-select>
+                @if (loanForm.get('client')?.hasError('required')){<mat-error>El nombre del cliente no puede estar vacío</mat-error>}
+                @if (loanForm.get('client')?.hasError('exists')){<mat-error>El cliente ya tiene 2 juegos en estas fechas</mat-error>}
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Fecha de recogida</mat-label>
+                    <input
+                        matInput
+                        [matDatepicker]="picker"
+                        formControlName="checkOutDate"
+                        placeholder="Selecciona fecha de recogida"
+                        />
+                    @if (loanForm.get('checkOutDate')?.hasError('required')){<mat-error>La fecha de recogida no puede estar vacía</mat-error>}
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Fecha de retorno</mat-label>
+                    <input
+                        matInput
+                        [matDatepicker]="cpicker"
+                        formControlName="returnDate"
+                        placeholder="Selecciona fecha de retorno"
+                        />
+                    @if (loanForm.get('returnDate')?.hasError('required')){<mat-error>La fecha de retorno no puede estar vacía</mat-error>}
+                    @if (loanForm.get('returnDate')?.hasError('antesDe')){<mat-error>No puede ser anterior a la de recogida</mat-error>}
+                    @if (loanForm.get('returnDate')?.hasError('demasiadosDias')){<mat-error>No se puede reservar más de 14 días</mat-error>}
+                <mat-datepicker-toggle matSuffix [for]="cpicker"></mat-datepicker-toggle>
+                <mat-datepicker #cpicker></mat-datepicker>
+            </mat-form-field>
+
+    </form> 
+
+    <div class="buttons">
+        <button mat-stroked-button (click)="onClose()">Cerrar</button>
+        <button mat-flat-button color="primary" (click)="onSave()">Guardar</button>
+    </div>
+</div>

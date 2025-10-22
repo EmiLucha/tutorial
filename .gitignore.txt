@@ -1,0 +1,17 @@
+# === Node.js (frontend) ===
+frontend/node_modules/
+frontend/.env
+frontend/dist/
+frontend/.vite/
+frontend/build/
+
+# === Java / IntelliJ (backend) ===
+backend/target/
+backend/.idea/
+backend/.env
+
+# === Archivos de sistema / generales ===
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini

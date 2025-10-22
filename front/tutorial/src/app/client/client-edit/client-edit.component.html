@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>{{ clientForm.get('id')?.value ? 'Modificar cliente' : 'Crear cliente' }}</h1>
+
+    <form [formGroup]="clientForm">
+        <mat-form-field>
+            <mat-label>Identificador</mat-label>
+            <input type="text" matInput placeholder="Identificador" formControlName="id" disabled>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input type="text" matInput placeholder="Nombre del cliente" formControlName="name" required>
+            @if (clientForm.get('name')?.hasError('required')){<mat-error>El nombre no puede estar vacío</mat-error>}
+            @if (clientForm.get('name')?.hasError('exists')){<mat-error>Ya existe un cliente con ese nombre</mat-error>}
+        </mat-form-field>
+    </form> 
+
+    <div class="buttons">
+        <button mat-stroked-button (click)="onClose()">Cerrar</button>
+        <button mat-flat-button color="primary" (click)="onSave()">Guardar</button>
+    </div>
+</div>
