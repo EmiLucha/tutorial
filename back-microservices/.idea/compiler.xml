@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="tutorial-category" />
+        <module name="tutorial-author" />
+        <module name="tutorial-eureka" />
+        <module name="tutorial-client" />
+        <module name="tutorial-loan" />
+        <module name="tutorial-game" />
+        <module name="tutorial-gateway" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="tutorial-author" options="-parameters" />
+      <module name="tutorial-category" options="-parameters" />
+      <module name="tutorial-client" options="-parameters" />
+      <module name="tutorial-eureka" options="-parameters" />
+      <module name="tutorial-game" options="-parameters" />
+      <module name="tutorial-gateway" options="-parameters" />
+      <module name="tutorial-loan" options="-parameters" />
+    </option>
+  </component>
+</project>
