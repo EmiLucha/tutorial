@@ -1,8 +1,8 @@
 package com.ccsw.tutorialloan.service;
 
-import com.ccsw.tutorial.loan.model.Loan;
-import com.ccsw.tutorial.loan.model.LoanDto;
-import com.ccsw.tutorial.loan.model.LoanSearchDto;
+import com.ccsw.tutorialloan.model.loan.Loan;
+import com.ccsw.tutorialloan.model.loan.LoanDto;
+import com.ccsw.tutorialloan.model.loan.LoanSearchDto;
 import org.springframework.data.domain.Page;
 
 import java.util.Date;

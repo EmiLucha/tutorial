@@ -1,8 +1,8 @@
 package com.ccsw.tutorialclient.controller;
 
-import com.ccsw.tutorial.client.model.Client;
-import com.ccsw.tutorial.client.model.ClientDto;
-import com.ccsw.tutorial.client.service.ClientService;
+import com.ccsw.tutorialclient.model.Client;
+import com.ccsw.tutorialclient.model.ClientDto;
+import com.ccsw.tutorialclient.service.ClientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 @Tag(name = "Client", description = "API of Client")
 @RequestMapping(value = "/client")
 @RestController
-@CrossOrigin(origins = "*")
 public class ClientController {
 
     @Autowired

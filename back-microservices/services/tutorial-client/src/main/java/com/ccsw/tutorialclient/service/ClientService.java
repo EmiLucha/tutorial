@@ -1,7 +1,7 @@
 package com.ccsw.tutorialclient.service;
 
-import com.ccsw.tutorial.client.model.Client;
-import com.ccsw.tutorial.client.model.ClientDto;
+import com.ccsw.tutorialclient.model.Client;
+import com.ccsw.tutorialclient.model.ClientDto;
 
 import java.util.List;
 

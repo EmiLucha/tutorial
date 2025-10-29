@@ -1,6 +1,6 @@
-package com.ccsw.tutorialloan.model;
+package com.ccsw.tutorialloan.model.loan;
 
-import com.ccsw.tutorial.common.pagination.PageableRequest;
+import com.ccsw.tutorialloan.common.pagination.PageableRequest;
 
 /**
  * @author ccsw

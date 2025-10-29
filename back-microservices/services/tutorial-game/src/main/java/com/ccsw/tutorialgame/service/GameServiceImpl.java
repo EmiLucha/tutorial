@@ -1,8 +1,8 @@
 package com.ccsw.tutorialgame.service;
 
 import com.ccsw.tutorialgame.common.criteria.SearchCriteria;
-import com.ccsw.tutorialgame.model.Game;
-import com.ccsw.tutorialgame.model.GameDto;
+import com.ccsw.tutorialgame.model.game.Game;
+import com.ccsw.tutorialgame.model.game.GameDto;
 import com.ccsw.tutorialgame.repository.GameRepository;
 import com.ccsw.tutorialgame.repository.GameSpecification;
 import jakarta.transaction.Transactional;

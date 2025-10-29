@@ -1,9 +1,9 @@
 package com.ccsw.tutorialclient.service;
 
-import com.ccsw.tutorial.client.model.Client;
-import com.ccsw.tutorial.client.model.ClientDto;
-import com.ccsw.tutorial.client.repository.ClientRepository;
-import com.ccsw.tutorial.exception.DuplicateNameException;
+import com.ccsw.tutorialclient.exception.DuplicateNameException;
+import com.ccsw.tutorialclient.model.Client;
+import com.ccsw.tutorialclient.model.ClientDto;
+import com.ccsw.tutorialclient.repository.ClientRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

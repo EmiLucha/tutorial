@@ -1,8 +1,8 @@
 package com.ccsw.tutorialclient.handler;
 
-import com.ccsw.tutorial.exception.DuplicateNameException;
-import com.ccsw.tutorial.exception.GameAlreadyInLoanException;
-import com.ccsw.tutorial.exception.TooManyLoansException;
+import com.ccsw.tutorialclient.exception.DuplicateNameException;
+import com.ccsw.tutorialclient.exception.GameAlreadyInLoanException;
+import com.ccsw.tutorialclient.exception.TooManyLoansException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

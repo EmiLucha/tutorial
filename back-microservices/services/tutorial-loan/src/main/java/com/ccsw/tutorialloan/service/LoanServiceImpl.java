@@ -1,13 +1,13 @@
 package com.ccsw.tutorialloan.service;
 
-import com.ccsw.tutorial.common.criteria.SearchCriteria;
-import com.ccsw.tutorial.exception.GameAlreadyInLoanException;
-import com.ccsw.tutorial.exception.TooManyLoansException;
-import com.ccsw.tutorial.loan.model.Loan;
-import com.ccsw.tutorial.loan.model.LoanDto;
-import com.ccsw.tutorial.loan.model.LoanSearchDto;
-import com.ccsw.tutorial.loan.repository.LoanRepository;
-import com.ccsw.tutorial.loan.repository.LoanSpecification;
+import com.ccsw.tutorialloan.common.criteria.SearchCriteria;
+import com.ccsw.tutorialloan.exception.GameAlreadyInLoanException;
+import com.ccsw.tutorialloan.exception.TooManyLoansException;
+import com.ccsw.tutorialloan.model.loan.Loan;
+import com.ccsw.tutorialloan.model.loan.LoanDto;
+import com.ccsw.tutorialloan.model.loan.LoanSearchDto;
+import com.ccsw.tutorialloan.repository.LoanRepository;
+import com.ccsw.tutorialloan.repository.LoanSpecification;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +35,8 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public Page<Loan> findPage(Long idGame, Long idClient, Date date, LoanSearchDto dto) {
 
-        LoanSpecification titleSpec = new LoanSpecification(new SearchCriteria("game.id", ":", idGame));
-        LoanSpecification clientSpec = new LoanSpecification(new SearchCriteria("client.id", ":", idClient));
+        LoanSpecification titleSpec = new LoanSpecification(new SearchCriteria("gameId", ":", idGame));
+        LoanSpecification clientSpec = new LoanSpecification(new SearchCriteria("clientId", ":", idClient));
         LoanSpecification dateSpec = new LoanSpecification(new SearchCriteria("dateBetween", "dateBetween", date));
 
         Specification<Loan> spec = titleSpec.and(clientSpec).and(dateSpec);
@@ -70,16 +70,18 @@ public class LoanServiceImpl implements LoanService {
         }
 
         // Comprobar que el mismo juego no puede estar prestado ninguna fecha entre checkDate y returnDate
-        if (loanRepository.existsByGameAndCheckOutDateLessThanEqualAndReturnDateGreaterThanEqual(data.getGame(), data.getReturnDate(), data.getCheckOutDate())) {
+        if (loanRepository.existsByGameIdAndCheckOutDateLessThanEqualAndReturnDateGreaterThanEqual(data.getGame().getId(), data.getReturnDate(), data.getCheckOutDate())) {
             throw new GameAlreadyInLoanException("El juego ya está reservado");
         }
 
         // Comprobar que el mismo cliente no puede tener más de dos juegos ninguna fecha entre checkDate y returnDate
-        if (loanRepository.countByClientAndCheckOutDateLessThanEqualAndReturnDateGreaterThanEqual(data.getClient(), data.getReturnDate(), data.getCheckOutDate()) >= 2) {
+        if (loanRepository.countByClientIdAndCheckOutDateLessThanEqualAndReturnDateGreaterThanEqual(data.getClient().getId(), data.getReturnDate(), data.getCheckOutDate()) >= 2) {
             throw new TooManyLoansException("El cliente ya tiene dos préstamos activos en ese periodo");
         }
 
-        BeanUtils.copyProperties(data, loan, "id");
+        BeanUtils.copyProperties(data, loan, "id", "client", "game");
+        loan.setClient(data.getClient().getId());
+        loan.setGame(data.getGame().getId());
 
         this.loanRepository.save(loan);
     }

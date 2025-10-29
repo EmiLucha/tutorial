@@ -1,4 +1,4 @@
-package com.ccsw.tutorialgame.category;
+package com.ccsw.tutorialloan.model.category;
 
 /**
  * @author ccsw

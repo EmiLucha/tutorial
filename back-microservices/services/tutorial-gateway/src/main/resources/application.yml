@@ -22,12 +22,24 @@ spring:
           uri: lb://SPRING-CLOUD-EUREKA-CLIENT-CATEGORY
           predicates:
             - Path=/category/**
+
         - id: author
           uri: lb://SPRING-CLOUD-EUREKA-CLIENT-AUTHOR
           predicates:
             - Path=/author/**
+
         - id: game
           uri: lb://SPRING-CLOUD-EUREKA-CLIENT-GAME
           predicates:
             - Path=/game/**
+
+        - id: client
+          uri: lb://SPRING-CLOUD-EUREKA-CLIENT-CLIENT
+          predicates:
+            - Path=/client/**
+
+        - id: loan
+          uri: lb://SPRING-CLOUD-EUREKA-CLIENT-LOAN
+          predicates:
+            - Path=/loan/**
 

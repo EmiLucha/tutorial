@@ -1,21 +1,33 @@
-package com.ccsw.tutorialloan.model;
+package com.ccsw.tutorialloan.model.loan;
 
-import com.ccsw.tutorial.client.model.Client;
-import com.ccsw.tutorial.game.model.Game;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
-public class LoanDto {
+/**
+ * @author ccsw
+ *
+ */
+@Entity
+@Table(name = "loan")
+public class Loan {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "check_out_date", nullable = false)
     private Date checkOutDate;
 
+    @Column(name = "return_date", nullable = false)
     private Date returnDate;
 
-    private Client client;
+    @Column(name = "client_id", nullable = false)
+    private Long clientId;
 
-    private Game game;
+    @Column(name = "game_id", nullable = false)
+    private Long gameId;
 
     /**
      * @return id
@@ -36,33 +48,33 @@ public class LoanDto {
     /**
      * @return client
      */
-    public Client getClient() {
+    public Long getClient() {
 
-        return this.client;
+        return this.clientId;
     }
 
     /**
      * @param client new value of {@link #getClient}.
      */
-    public void setClient(Client client) {
+    public void setClient(Long client) {
 
-        this.client = client;
+        this.clientId = client;
     }
 
     /**
      * @return game
      */
-    public Game getGame() {
+    public Long getGame() {
 
-        return this.game;
+        return this.gameId;
     }
 
     /**
      * @param game new value of {@link #getGame}.
      */
-    public void setGame(Game game) {
+    public void setGame(Long game) {
 
-        this.game = game;
+        this.gameId = game;
     }
 
     /**

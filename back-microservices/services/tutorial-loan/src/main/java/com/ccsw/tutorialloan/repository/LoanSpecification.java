@@ -1,8 +1,11 @@
 package com.ccsw.tutorialloan.repository;
 
-import com.ccsw.tutorial.common.criteria.SearchCriteria;
-import com.ccsw.tutorial.loan.model.Loan;
-import jakarta.persistence.criteria.*;
+import com.ccsw.tutorialloan.common.criteria.SearchCriteria;
+import com.ccsw.tutorialloan.model.loan.Loan;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.Date;
@@ -24,22 +27,10 @@ public class LoanSpecification implements Specification<Loan> {
             return builder.and(builder.lessThanOrEqualTo(root.get("checkOutDate"), (Date) criteria.getValue()), builder.greaterThanOrEqualTo(root.get("returnDate"), (Date) criteria.getValue()));
         }
         if (criteria.getOperation().equalsIgnoreCase(":") && criteria.getValue() != null) {
-            Path<String> path = getPath(root);
-            return builder.equal(path, criteria.getValue());
+
+            return builder.equal(root.get(criteria.getKey()), criteria.getValue());
         }
         return null;
-    }
-
-    private Path<String> getPath(Root<Loan> root) {
-        String key = criteria.getKey();
-        String[] split = key.split("[.]", 0);
-
-        Path<String> expression = root.get(split[0]);
-        for (int i = 1; i < split.length; i++) {
-            expression = expression.get(split[i]);
-        }
-
-        return expression;
     }
 
 }

@@ -1,11 +1,11 @@
 package com.ccsw.tutorialgame.controller;
 
-import com.ccsw.tutorialgame.author.AuthorClient;
-import com.ccsw.tutorialgame.author.AuthorDto;
-import com.ccsw.tutorialgame.category.CategoryClient;
-import com.ccsw.tutorialgame.category.CategoryDto;
-import com.ccsw.tutorialgame.model.Game;
-import com.ccsw.tutorialgame.model.GameDto;
+import com.ccsw.tutorialgame.model.author.AuthorClient;
+import com.ccsw.tutorialgame.model.author.AuthorDto;
+import com.ccsw.tutorialgame.model.category.CategoryClient;
+import com.ccsw.tutorialgame.model.category.CategoryDto;
+import com.ccsw.tutorialgame.model.game.Game;
+import com.ccsw.tutorialgame.model.game.GameDto;
 import com.ccsw.tutorialgame.service.GameService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 @Tag(name = "Game", description = "API of Game")
 @RequestMapping(value = "/game")
 @RestController
-@CrossOrigin(origins = "*")
 public class GameController {
 
     @Autowired

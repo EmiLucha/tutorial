@@ -1,6 +1,6 @@
 package com.ccsw.tutorialgame.repository;
 
-import com.ccsw.tutorialgame.model.Game;
+import com.ccsw.tutorialgame.model.game.Game;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 

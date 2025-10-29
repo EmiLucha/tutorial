@@ -1,4 +1,4 @@
-package com.ccsw.tutorialgame.author;
+package com.ccsw.tutorialloan.model.author;
 
 /**
  * @author ccsw

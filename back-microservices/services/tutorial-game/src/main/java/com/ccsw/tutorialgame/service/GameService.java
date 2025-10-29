@@ -1,7 +1,7 @@
 package com.ccsw.tutorialgame.service;
 
-import com.ccsw.tutorialgame.model.Game;
-import com.ccsw.tutorialgame.model.GameDto;
+import com.ccsw.tutorialgame.model.game.Game;
+import com.ccsw.tutorialgame.model.game.GameDto;
 
 import java.util.List;
 

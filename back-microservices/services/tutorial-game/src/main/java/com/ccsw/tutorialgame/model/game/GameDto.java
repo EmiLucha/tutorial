@@ -1,7 +1,7 @@
-package com.ccsw.tutorialgame.model;
+package com.ccsw.tutorialgame.model.game;
 
-import com.ccsw.tutorialgame.author.AuthorDto;
-import com.ccsw.tutorialgame.category.CategoryDto;
+import com.ccsw.tutorialgame.model.author.AuthorDto;
+import com.ccsw.tutorialgame.model.category.CategoryDto;
 
 /**
  * @author ccsw

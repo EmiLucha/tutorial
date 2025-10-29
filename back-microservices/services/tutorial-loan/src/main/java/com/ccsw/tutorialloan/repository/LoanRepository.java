@@ -1,8 +1,6 @@
 package com.ccsw.tutorialloan.repository;
 
-import com.ccsw.tutorial.client.model.Client;
-import com.ccsw.tutorial.game.model.Game;
-import com.ccsw.tutorial.loan.model.Loan;
+import com.ccsw.tutorialloan.model.loan.Loan;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 
@@ -10,7 +8,7 @@ import java.util.Date;
 
 public interface LoanRepository extends CrudRepository<Loan, Long>, JpaSpecificationExecutor<Loan> {
 
-    boolean existsByGameAndCheckOutDateLessThanEqualAndReturnDateGreaterThanEqual(Game game, Date endDate, Date startDate);
+    boolean existsByGameIdAndCheckOutDateLessThanEqualAndReturnDateGreaterThanEqual(Long gameId, Date endDate, Date startDate);
 
-    long countByClientAndCheckOutDateLessThanEqualAndReturnDateGreaterThanEqual(Client client, Date returnDate, Date checkOutDate);
+    long countByClientIdAndCheckOutDateLessThanEqualAndReturnDateGreaterThanEqual(Long clientId, Date returnDate, Date checkOutDate);
 }

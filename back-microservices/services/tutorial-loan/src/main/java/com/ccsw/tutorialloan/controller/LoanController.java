@@ -1,9 +1,13 @@
 package com.ccsw.tutorialloan.controller;
 
-import com.ccsw.tutorial.loan.model.Loan;
-import com.ccsw.tutorial.loan.model.LoanDto;
-import com.ccsw.tutorial.loan.model.LoanSearchDto;
-import com.ccsw.tutorial.loan.service.LoanService;
+import com.ccsw.tutorialloan.model.client.ClientClient;
+import com.ccsw.tutorialloan.model.client.ClientDto;
+import com.ccsw.tutorialloan.model.game.GameClient;
+import com.ccsw.tutorialloan.model.game.GameDto;
+import com.ccsw.tutorialloan.model.loan.Loan;
+import com.ccsw.tutorialloan.model.loan.LoanDto;
+import com.ccsw.tutorialloan.model.loan.LoanSearchDto;
+import com.ccsw.tutorialloan.service.LoanService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
@@ -13,6 +17,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -22,7 +27,6 @@ import java.util.stream.Collectors;
 @Tag(name = "Loan", description = "API of Loan")
 @RequestMapping(value = "/loan")
 @RestController
-@CrossOrigin(origins = "*")
 public class LoanController {
 
     @Autowired
@@ -30,6 +34,12 @@ public class LoanController {
 
     @Autowired
     ModelMapper mapper;
+
+    @Autowired
+    GameClient gameClient;
+
+    @Autowired
+    ClientClient clientClient;
 
     /**
      * Método para recuperar un listado paginado y filtrado de {@link Loan}
@@ -47,7 +57,25 @@ public class LoanController {
 
         Page<Loan> page = this.loanService.findPage(idGame, idClient, date, dto);
 
-        return new PageImpl<>(page.getContent().stream().map(e -> mapper.map(e, LoanDto.class)).collect(Collectors.toList()), page.getPageable(), page.getTotalElements());
+        List<ClientDto> clients = clientClient.findAll();
+        List<GameDto> games = gameClient.findAll();
+
+        List<LoanDto> loanDtos = page.getContent().stream().map(loan -> {
+
+            LoanDto loanDto = new LoanDto();
+            loanDto.setId(loan.getId());
+            loanDto.setCheckOutDate(loan.getCheckOutDate());
+            loan.setReturnDate(loan.getReturnDate());
+
+            loanDto.setClient(clients.stream().filter(client -> client.getId().equals(loan.getClient())).findFirst().orElse(null));
+
+            loanDto.setGame(games.stream().filter(game -> game.getId().equals(loan.getGame())).findFirst().orElse(null));
+
+            return loanDto;
+
+        }).collect(Collectors.toList());
+
+        return new PageImpl<>(loanDtos, page.getPageable(), page.getTotalElements());
 
     }
 

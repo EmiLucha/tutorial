@@ -1,4 +1,4 @@
-package com.ccsw.tutorialgame.model;
+package com.ccsw.tutorialgame.model.game;
 
 import jakarta.persistence.*;
 
